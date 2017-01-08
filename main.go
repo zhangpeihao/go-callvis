@@ -97,9 +97,11 @@ func doCallgraph(ctxt *build.Context, focusPkg, limitPath, ignorePath, subgraph 
 		if caller.Pkg == nil || callee.Synthetic != "" {
 			return nil
 		}
-		if !(caller.Pkg.Pkg.Name() == focusPkg || callee.Pkg.Pkg.Name() == focusPkg) {
-			return nil
-		}
+		// Remove this check to draw all packages
+		// By zhangpeihao@gmail.com
+		//		if !(caller.Pkg.Pkg.Name() == focusPkg || callee.Pkg.Pkg.Name() == focusPkg) {
+		//			return nil
+		//		}
 		if strings.HasPrefix(caller.Pkg.Pkg.Path(), path.Join(main.Pkg.Path(), "vendor")) ||
 			strings.HasPrefix(callee.Pkg.Pkg.Path(), path.Join(main.Pkg.Path(), "vendor")) {
 			return nil
